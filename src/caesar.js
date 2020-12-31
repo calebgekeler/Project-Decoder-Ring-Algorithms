@@ -6,10 +6,10 @@ function caesar(input, shift, encode = true){
     if(encode === false){shift*=-1};
 
     const lowerCaseInput = input.toLowerCase();
-    const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
     const indexAlphabet = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
     const inputIndex = [];
-    const password = [];
+    const message = [];
 
     //deconstructs string into an array of index positions
     //while igoring non alphabetical characters
@@ -32,26 +32,26 @@ function caesar(input, shift, encode = true){
         for(let k = 0; k<alphabet.length; k++){
             if(inputIndex[n]===k){
                 if((k+shift) > 25){
-                    password.push(alphabet[k+shift-26]);
+                    message.push(alphabet[k+shift-26]);
                     break;
                 }
                 if((k+shift) < 0){
-                    password.push(alphabet[k+shift+26]);
+                    message.push(alphabet[k+shift+26]);
                     break;
                 }
                 else{
-                    password.push(alphabet[k+shift]);
+                    message.push(alphabet[k+shift]);
                     break;
                 }                
             }
             if(!indexAlphabet.includes(inputIndex[n])){
-                password.push(inputIndex[n]);
+                message.push(inputIndex[n]);
                 break;
             }
         }
     }
-    //combines the characters in the password array into a single string for output
-    return password.join('');
+    //combines the characters in the message array into a single string for output
+    return message.join('');
 }
 
 module.exports = caesar;

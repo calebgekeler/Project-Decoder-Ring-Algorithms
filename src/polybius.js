@@ -1,6 +1,6 @@
 function polybius(input, encode = true){
     const lowerCaseInput = input.toLowerCase();
-    const password = []
+    const message = []
     const cipher = [
         ['EMPTY'],
         ['EMPTY','a','f','l','q','v'],
@@ -21,17 +21,17 @@ function polybius(input, encode = true){
             for(let j = 1; j<6; j++){//first position in cipher
                 for(let k = 1; k<6; k++){//second position in cipher
                     if(inputArray[i]==='j'){
-                        password.push(4, 2);
+                        message.push(4, 2);
                         i+=1;
                         break;
                     }
                     if(inputArray[i] === ' '){
-                        password.push(inputArray[i]);
+                        message.push(inputArray[i]);
                         i+=1;
                         break;
                     }
                     if(cipher[j][k]===inputArray[i]){
-                        password.push(j, k)
+                        message.push(j, k)
                     }
                 }
             }
@@ -52,22 +52,22 @@ function polybius(input, encode = true){
             for(let m = 1; m<6; m++){//first position of cipher
                 for(let o = 1; o<6; o++){//second position of cipher
                     if(inputNumArray[n]===4 && inputNumArray[n+1]===2){
-                        password.push('i/j');
+                        message.push('i/j');
                         n+=2
                     }
                     if(input[n] === ' '){
-                        password.push(inputNumArray[n]);
+                        message.push(inputNumArray[n]);
                         n+=1;
                         break;
                     }
                     if(inputNumArray[n] === m && inputNumArray[n+1] === o){
-                        password.push(cipher[m][o]);
+                        message.push(cipher[m][o]);
                     }
                 }
             }
         }
     }
-    return password.join('');
+    return message.join('');
 }
 
 module.exports = polybius;
